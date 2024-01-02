@@ -28,7 +28,8 @@
     "lint:eslint": "eslint --ext \".js,.ts,.tsx\" .",
     "fix:eslint": "npm run lint:eslint --fix",
     "lint": "npm run lint:prettier && npm run lint:eslint",
-    "fix": "npm run fix:prettier && npm run fix:eslint"
+    "fix": "npm run fix:prettier && npm run fix:eslint",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
