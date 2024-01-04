@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { apiClient } from "../axios";
+import React, { useState, useEffect } from 'react';
+import { apiClient } from '../axios';
 
 type Props = {
   title: string;
   fetchUrl: string;
   isLargeRow?: boolean;
 };
-
 
 type Movie = {
   id: string;
@@ -17,14 +16,13 @@ type Movie = {
   backdrop_path: string;
 };
 
-
 export const Row = ({ title, fetchUrl, isLargeRow }: Props) => {
   const [movies, setMovies] = useState<Movie[]>([]);
-  
+
   useEffect(() => {
     async function fetchData() {
       const request = await apiClient.apiGet(fetchUrl);
-      console.log(request.data)
+      console.log(request.data);
       setMovies(request.data.results);
       return request;
     }
@@ -33,7 +31,7 @@ export const Row = ({ title, fetchUrl, isLargeRow }: Props) => {
 
   console.log(movies);
 
-  return(
+  return (
     <div className="Row">
       <h2>{title}</h2>
       <div className="Row-posters">
@@ -41,7 +39,7 @@ export const Row = ({ title, fetchUrl, isLargeRow }: Props) => {
         {movies.map((movie) => (
           <img
             key={movie.id}
-            className={`Row-poster ${isLargeRow && "Row-poster-large"}`}
+            className={`Row-poster ${isLargeRow && 'Row-poster-large'}`}
             src={`${process.env.REACT_APP_TMDB_BASE_URL}${
               isLargeRow ? movie.poster_path : movie.backdrop_path
             }`}
@@ -50,5 +48,5 @@ export const Row = ({ title, fetchUrl, isLargeRow }: Props) => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
