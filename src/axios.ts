@@ -1,7 +1,18 @@
-import axios from 'axios';
+import axiosBase, { AxiosInstance, AxiosResponse } from 'axios';
 
-const instance = axios.create({
-  baseURL: 'https://api.themoviedb.org/3',
-});
+class ApiClient {
+  axios: AxiosInstance;
 
-export default instance;
+  constructor() {
+    this.axios = axiosBase.create({
+      baseURL: process.env.REACT_APP_TMDB_BASE_URL,
+      responseType: 'json',
+    });
+  }
+
+  async apiGet(url: string, query = {}): Promise<AxiosResponse> {
+    return await this.axios.get(url, { ...query });
+  }
+}
+
+export const apiClient = new ApiClient();
