@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { apiClient } from '../axios';
+import './Row.scss';
+
+const base_url = 'https://image.tmdb.org/t/p/original';
 
 type Props = {
   title: string;
@@ -40,7 +43,7 @@ export const Row = ({ title, fetchUrl, isLargeRow }: Props) => {
           <img
             key={movie.id}
             className={`Row-poster ${isLargeRow && 'Row-poster-large'}`}
-            src={`${process.env.REACT_APP_TMDB_BASE_URL}${
+            src={`${base_url}${
               isLargeRow ? movie.poster_path : movie.backdrop_path
             }`}
             alt={movie.name}
