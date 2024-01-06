@@ -21,7 +21,7 @@ export const Banner = () => {
 
       setMovie(
         request.data.results[
-          Math.floor(Math.random() * request.data.result.length - 1)
+          Math.floor(Math.random() * request.data.results.length - 1)
         ],
       );
       return request;
