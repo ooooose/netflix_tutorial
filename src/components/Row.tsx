@@ -55,10 +55,11 @@ export const Row = ({ title, fetchUrl, isLargeRow }: Props) => {
       setTrailerUrl('');
     } else {
       const trailerurl = await apiClient.apiGet(
-        `/movie/${movie.id}/videos?api_key=${process.env.REACT_APP_TMDB_API_KEY}`,
+        `/movie/${movie.id}/videos?api_key=${process.env.REACT_APP_TMDB_API_KEY}`
       );
-      setTrailerUrl(trailerurl.data.resules[0]?.key);
+      setTrailerUrl(trailerurl.data.results[0]?.key);
     }
+    console.log(trailerUrl)
   };
 
   return (
