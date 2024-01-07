@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { apiClient } from '../axios';
-import YouTube from "react-youtube";
+import YouTube from 'react-youtube';
 import './Row.scss';
 
 const base_url = 'https://image.tmdb.org/t/p/original';
@@ -25,12 +25,12 @@ type Options = {
   width: string;
   playerVars: {
     autoplay: 0 | 1 | undefined;
-  }
-}
+  };
+};
 
 export const Row = ({ title, fetchUrl, isLargeRow }: Props) => {
   const [movies, setMovies] = useState<Movie[]>([]);
-  const [trailerUrl, setTrailerUrl] = useState<string | null>("");
+  const [trailerUrl, setTrailerUrl] = useState<string | null>('');
 
   useEffect(() => {
     async function fetchData() {
@@ -43,8 +43,8 @@ export const Row = ({ title, fetchUrl, isLargeRow }: Props) => {
   }, [fetchUrl]);
 
   const opts: Options = {
-    height: "390",
-    width: "640",
+    height: '390',
+    width: '640',
     playerVars: {
       autoplay: 1,
     },
@@ -52,14 +52,14 @@ export const Row = ({ title, fetchUrl, isLargeRow }: Props) => {
 
   const handleClick = async (movie: Movie) => {
     if (trailerUrl) {
-      setTrailerUrl("");
+      setTrailerUrl('');
     } else {
       const trailerurl = await apiClient.apiGet(
-        `/movie/${movie.id}/videos?api_key=${process.env.REACT_APP_TMDB_API_KEY}`
+        `/movie/${movie.id}/videos?api_key=${process.env.REACT_APP_TMDB_API_KEY}`,
       );
       setTrailerUrl(trailerurl.data.resules[0]?.key);
     }
-  }
+  };
 
   return (
     <div className="Row">
